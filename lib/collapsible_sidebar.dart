@@ -173,10 +173,6 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _avatar,
-                  SizedBox(
-                    height: widget.topPadding,
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
@@ -197,6 +193,10 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: widget.topPadding,
+                  ),
+                  _avatar,
                   SizedBox(
                     height: widget.bottomPadding,
                   ),
