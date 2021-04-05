@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class CollapsibleItemSelection extends StatefulWidget {
   const CollapsibleItemSelection({
-    @required this.height,
-    @required this.offsetY,
-    @required this.color,
-    @required this.duration,
-    @required this.curve,
+    required this.height,
+    required this.offsetY,
+    required this.color,
+    required this.duration,
+    required this.curve,
   });
 
-  final double height, offsetY;
+  final double? height, offsetY;
   final Color color;
   final Duration duration;
   final Curve curve;
@@ -21,10 +21,10 @@ class CollapsibleItemSelection extends StatefulWidget {
 
 class _CollapsibleItemSelectionState extends State<CollapsibleItemSelection>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _offsetYAnimation;
-  CurvedAnimation _curvedAnimation;
-  double _oldOffsetY;
+  late AnimationController _controller;
+  late Animation<double> _offsetYAnimation;
+  late CurvedAnimation _curvedAnimation;
+  double? _oldOffsetY;
 
   @override
   void initState() {
@@ -59,7 +59,7 @@ class _CollapsibleItemSelectionState extends State<CollapsibleItemSelection>
     super.didUpdateWidget(oldWidget);
   }
 
-  Animation<double> _createAnimation(double begin, double end) {
+  Animation<double> _createAnimation(double? begin, double? end) {
     return Tween<double>(
       begin: begin,
       end: end,

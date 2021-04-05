@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class CollapsibleContainer extends StatelessWidget {
   const CollapsibleContainer({
-    @required this.height,
-    @required this.width,
-    @required this.padding,
-    @required this.borderRadius,
-    @required this.color,
-    @required this.child,
+    required this.height,
+    required this.width,
+    required this.padding,
+    required this.borderRadius,
+    required this.color,
+    required this.child,
   });
 
-  final double height, width, padding, borderRadius;
+  final double? height, width, padding, borderRadius;
   final Color color;
   final Widget child;
 
@@ -19,9 +19,9 @@ class CollapsibleContainer extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.all(padding!),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(borderRadius!),
         color: color,
         boxShadow: [
           BoxShadow(

@@ -13,7 +13,7 @@ export 'package:collapsible_sidebar/collapsible_sidebar/collapsible_item.dart';
 
 class CollapsibleSidebar extends StatefulWidget {
   const CollapsibleSidebar({
-    @required this.items,
+    required this.items,
     this.title = 'Lorem Ipsum',
     this.titleStyle,
     this.textStyle,
@@ -39,11 +39,11 @@ class CollapsibleSidebar extends StatefulWidget {
     this.topPadding = 0,
     this.bottomPadding = 0,
     this.fitItemsToBottom = false,
-    @required this.body,
+    required this.body,
   });
 
   final String title, toggleTitle;
-  final TextStyle titleStyle, textStyle, toggleTitleStyle;
+  final TextStyle? titleStyle, textStyle, toggleTitleStyle;
   final Widget body;
   final avatarImg;
   final bool showToggleButton, fitItemsToBottom;
@@ -73,14 +73,14 @@ class CollapsibleSidebar extends StatefulWidget {
 
 class _CollapsibleSidebarState extends State<CollapsibleSidebar>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _widthAnimation;
-  CurvedAnimation _curvedAnimation;
-  double tempWidth;
+  late AnimationController _controller;
+  late Animation<double> _widthAnimation;
+  late CurvedAnimation _curvedAnimation;
+  double? tempWidth;
 
   var _isCollapsed = true;
-  double _currWidth, _delta, _delta1By4, _delta3by4, _maxOffsetX, _maxOffsetY;
-  int _selectedItemIndex;
+  late double _currWidth, _delta, _delta1By4, _delta3by4, _maxOffsetX, _maxOffsetY;
+  late int _selectedItemIndex;
 
   @override
   void initState() {
@@ -89,7 +89,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
     tempWidth = widget.maxWidth > 270 ? 270 : widget.maxWidth;
 
     _currWidth = widget.minWidth;
-    _delta = tempWidth - widget.minWidth;
+    _delta = tempWidth! - widget.minWidth;
     _delta1By4 = _delta * 0.25;
     _delta3by4 = _delta * 0.75;
     _maxOffsetX = widget.padding * 2 + widget.iconSize;
@@ -117,7 +117,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
     });
   }
 
-  void _animateTo(double endWidth) {
+  void _animateTo(double? endWidth) {
     _widthAnimation = Tween<double>(
       begin: _currWidth,
       end: endWidth,
@@ -127,9 +127,9 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
   }
 
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
-    _currWidth += details.primaryDelta;
-    if (_currWidth > tempWidth)
-      _currWidth = tempWidth;
+    _currWidth += details.primaryDelta!;
+    if (_currWidth > tempWidth!)
+      _currWidth = tempWidth!;
     else if (_currWidth < widget.minWidth)
       _currWidth = widget.minWidth;
     else
@@ -300,7 +300,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
   double get _currAngle => -math.pi * _fraction;
   double get _offsetX => _maxOffsetX * _fraction;
 
-  TextStyle _textStyle(Color color, TextStyle style) {
+  TextStyle _textStyle(Color color, TextStyle? style) {
     return style == null
         ? TextStyle(
             fontSize: 20,
